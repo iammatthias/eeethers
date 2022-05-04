@@ -7,11 +7,13 @@ import { globalStyles } from '@/styles/stitches.config';
 export default function MyApp({ Component, pageProps }: AppProps) {
   globalStyles();
   return (
-    <VibeProvider>
-      <Layout>
-        <Component {...pageProps} />
+    <>
+      <VibeProvider>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
         <Background />
-      </Layout>
-    </VibeProvider>
+      </VibeProvider>
+    </>
   );
 }

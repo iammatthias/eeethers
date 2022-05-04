@@ -17,10 +17,9 @@ export default function Home() {
         alignItems: `center`,
         height: `100%`,
         width: `100%`,
-        padding: `8px 0`,
       }}
     >
-      <Box css={{ margin: `0 auto`, alignSelf: accountData && `start` }}>
+      <Box css={{ margin: `8px auto`, alignSelf: accountData && `start` }}>
         <Box css={{ display: `flex` }}>
           <ConnectButton />
         </Box>
