@@ -13,9 +13,10 @@ export default function Background() {
   const { data: accountData } = useAccount();
   const _address = accountData && accountData.address;
 
-  // generate random eth address, fall back to mine
+  // generate random eth address, fall back to all white
   const [address, setAddress] = useState(
-    `0x429f42fb5247e3a34d88d978b7491d4b2bee6105`,
+    // `0x429f42fb5247e3a34d88d978b7491d4b2bee6105`,
+    `0xffffffffffffffffffffffffffffffffffffffff`,
   );
   const [seed, setSeed] = useState(0);
 
@@ -81,8 +82,7 @@ export default function Background() {
       {colors && (
         <SVG
           xmlns="http://www.w3.org/2000/svg"
-          // viewBox={`0 0 ${width ? width : 400} ${height ? height : 400}`}
-          viewBox="0 0 400 400"
+          viewBox={`0 0 ${!safari ? 1000 : 400} ${!safari ? 1000 : 400}`}
           width="100vw"
           height="100vh"
           css={{
