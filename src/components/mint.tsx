@@ -5,11 +5,11 @@ import { styled } from '@/styles/stitches.config';
 import abi from '@/lib/contract/abi.json';
 
 import { PillBox } from './pillBox';
+import { Button } from './button';
 
 export default function Mint() {
   const contract = process.env.NEXT_PUBLIC_TARGET_CONTRACT_ADDRESS;
 
-  const Button = styled(`button`);
   const {
     data: writeData,
     isError: writeError,
@@ -32,23 +32,7 @@ export default function Mint() {
   return (
     <>
       {!writeData && (
-        <Button
-          css={{
-            background: `var(--rk-colors-connectButtonBackground)`,
-            width: `fit-content`,
-            padding: `8px`,
-            borderRadius: `12px`,
-            border: `2px solid var(--rk-colors-connectButtonBackground)`,
-            boxShadow: `var(--rk-shadows-connectButton)`,
-            fontSize: `18px`,
-            fontWeight: `700`,
-            fontFamily: `var(--rk-fonts-body)`,
-            '&:hover': {
-              transform: `scale(1.025)`,
-            },
-          }}
-          onClick={writeError ? disconnect : (write as any)}
-        >
+        <Button onClick={writeError ? disconnect : (write as any)}>
           {writeError
             ? `Error - Reset`
             : writeLoading
@@ -61,10 +45,7 @@ export default function Mint() {
           <b>tx:</b>
           {` `}
           <a
-            href={
-              `https://kovan-optimistic.etherscan.io/tx/` +
-              transactionData.transactionHash
-            }
+            href={`${process.env.NEXT_PUBLIC_ETHERSCAN_URL}tx/${transactionData.transactionHash}`}
           >
             {transactionData.transactionHash}
           </a>
