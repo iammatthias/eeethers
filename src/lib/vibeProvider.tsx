@@ -43,9 +43,7 @@ export default function VibeProvider({ children }: any) {
 
   return (
     <WagmiProvider client={wagmiClient}>
-      <RainbowKitProvider chains={chains} theme={darkTheme()}>
-        {children}
-      </RainbowKitProvider>
+      <RainbowKitProvider chains={chains}>{children}</RainbowKitProvider>
     </WagmiProvider>
   );
 }
