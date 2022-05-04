@@ -25,7 +25,7 @@ export default function VibeProvider({ children }: any) {
 
   const chains: Chain[] = [
     // { ...chain.optimism, name: 'Optimism' },
-    { ...chain.optimismKovan, name: 'Optimism Kovan' },
+    { ...chain.optimismKovan, name: `Optimism Kovan` },
   ];
 
   const needsInjectedWalletFallback =
