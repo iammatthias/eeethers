@@ -11,36 +11,28 @@ export default function Home() {
   return (
     <Box
       css={{
+        zIndex: `2`,
+        position: `absolute`,
+        top: `0`,
+        left: `0`,
+        width: `100%`,
+        height: `100%`,
         display: `flex`,
         flexDirection: `column`,
         justifyContent: `center`,
         alignItems: `center`,
-        height: `100%`,
-        width: `100%`,
       }}
     >
       <Box
         css={{
-          margin: `8px auto`,
-          alignSelf: accountData && `start`,
-          width: `100%`,
+          margin: `16px auto`,
         }}
       >
-        <Box css={{ margin: `8px 16px` }}>
-          <Box
-            css={{
-              display: `flex`,
-              gap: `8px`,
-              justifyContent: `center`,
-            }}
-          >
-            <ConnectButton
-              accountStatus="address"
-              chainStatus="name"
-              showBalance={false}
-            />
-          </Box>
-        </Box>
+        <ConnectButton
+          accountStatus="address"
+          chainStatus="name"
+          showBalance={false}
+        />
       </Box>
       {accountData && (
         <Box
