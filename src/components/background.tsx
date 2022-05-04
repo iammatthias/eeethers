@@ -47,7 +47,7 @@ export default function Background() {
 
   return (
     <>
-      {address && (
+      {colors && (
         <Box
           css={{
             margin: `0 auto`,
@@ -65,11 +65,12 @@ export default function Background() {
           >
             <Small
               css={{
-                fontSize: `0.8rem`,
+                fontSize: `0.7rem`,
                 fontFamily: `var(--rk-fonts-body)`,
+                color: `var(--rk-colors-connectButtonText)`,
               }}
             >
-              <b>color source</b>
+              color source
               <br />
               {address}
             </Small>

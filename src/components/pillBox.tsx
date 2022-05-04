@@ -1,12 +1,12 @@
 import { styled } from '@/styles/stitches.config';
 
 export const PillBox = styled(`div`, {
-  background: `linear-gradient(0deg, rgba(0, 0, 0, 0.03), rgba(0, 0, 0, 0.06)) #fff`,
+  background: `var(--rk-colors-connectButtonBackground)`,
   width: `fit-content`,
   padding: `8px`,
   borderRadius: `12px`,
-  border: `2px solid #fff`,
-  boxShadow: `0px 4px 12px rgba(0, 0, 0, 0.1)`,
+  border: `2px solid var(--rk-colors-connectButtonBackground)`,
+  boxShadow: `var(--rk-shadows-connectButton)`,
   '&:hover': {
     transform: `scale(1.025)`,
   },
