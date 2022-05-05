@@ -7,10 +7,8 @@ import {
   configureChains,
   RainbowKitProvider,
   getDefaultWallets,
-  darkTheme,
 } from '@rainbow-me/rainbowkit';
 import { createClient, chain, WagmiProvider } from 'wagmi';
-import { providers } from 'ethers';
 
 // components
 

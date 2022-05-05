@@ -1,9 +1,11 @@
+import { ethers } from 'ethers';
 import { useContractWrite, useWaitForTransaction, useSigner } from 'wagmi';
 import abi from '@/lib/contract/abi.json';
 
-import { PillBox } from './pillBox';
-import { Button } from './button';
-import { ethers } from 'ethers';
+import { Box } from './primitives/box';
+
+import { PillBox } from './primitives/pillBox';
+import { Button } from './primitives/button';
 
 export default function Mint() {
   const contract = process.env.NEXT_PUBLIC_TARGET_CONTRACT_ADDRESS as string;
@@ -49,19 +51,26 @@ export default function Mint() {
             ? `Error - Reset`
             : writeLoading || transactionLoading
             ? `Loading...`
-            : `Mint Eeethers`}
+            : `Mint Eeethers | 0.05 Ξ`}
         </Button>
       )}
       {transactionData && (
-        <PillBox css={{ fontSize: `0.7rem`, overflowWrap: `break-word` }}>
-          tx:
-          {` `}
-          <a
-            href={`${process.env.NEXT_PUBLIC_ETHERSCAN_URL}tx/${transactionData.transactionHash}`}
-          >
-            {transactionData.transactionHash}
-          </a>
-        </PillBox>
+        <>
+          <PillBox css={{ fontSize: `0.7rem`, overflowWrap: `break-word` }}>
+            tx:
+            {` `}
+            <a
+              href={`${process.env.NEXT_PUBLIC_ETHERSCAN_URL}tx/${transactionData.transactionHash}`}
+            >
+              {transactionData.transactionHash}
+            </a>
+          </PillBox>
+          <Box css={{ width: `100%`, display: `flex`, alignContent: `center` }}>
+            <Button css={{ margin: `16px auto` }} onClick={writeReset}>
+              Reset
+            </Button>
+          </Box>
+        </>
       )}
     </>
   );

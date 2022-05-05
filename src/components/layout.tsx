@@ -1,16 +1,20 @@
-import { Box } from './box';
+import { Box } from './primitives/box';
 
 export default function Layout({ children }: any) {
   return (
     <Box
       css={{
-        margin: `16px auto`,
-        padding: `0`,
+        position: `relative`,
         height: `100vh`,
-        width: `100vw`,
-        display: `flex`,
-        flexDirection: `column`,
-        justifyContent: `center`,
+        margin: `0 auto`,
+        padding: `0`,
+        display: `grid`,
+        gridTemplateColumns: `1fr`,
+        gridTemplateRows: `auto`,
+        gridGap: `1rem`,
+        '@bp1': {
+          gridTemplateColumns: `1fr 1fr`,
+        },
       }}
     >
       {children}
