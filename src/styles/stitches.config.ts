@@ -133,7 +133,7 @@ export const globalStyles = globalCss({
     whiteSpace: `normal`,
   },
   ':root': {
-    fontFamily: `"Crimson Text", system-ui, sans-serif`,
+    fontFamily: `system-ui, serif`,
     fontWeight: `400`,
     fontSize: `16px`,
     lineHeight: `1.618`,
@@ -145,11 +145,11 @@ export const globalStyles = globalCss({
     padding: `0`,
   },
   'h1, h2, h3, h4, h5, h6': {
-    fontFamily: `Cormorant, serif`,
-    fontWeight: `300`,
+    fontFamily: `system-ui, serif`,
+    fontWeight: `700`,
   },
   'pre, code': {
-    fontFamily: `Space Mono, monospace`,
+    fontFamily: `monospace`,
     border: `1px solid`,
     borderColor: `inherit`,
     borderRadius: `6px`,
@@ -192,13 +192,13 @@ export const globalStyles = globalCss({
   },
   a: {
     color: `inherit`,
-    fontFamily: `"Crimson Text", serif`,
+    fontFamily: `system-ui, serif`,
     fontWeight: `700`,
     textDecoration: `none`,
   },
   'ul, ol': {
     marginLeft: `$4`,
-    fontFamily: `'Space Mono', monospace`,
+    fontFamily: `'monospace`,
   },
   ul: {
     listStyle: `circle`,
@@ -220,50 +220,5 @@ export const globalStyles = globalCss({
     borderLeft: `2px solid $primary`,
     marginBottom: `$3`,
     paddingLeft: `$3`,
-  },
-
-  // etc
-  '.my-masonry-grid': {
-    display: `flex`,
-    gap: `8px`,
-    '.my-masonry-grid_column': {
-      paddingLeft: `8px`,
-      backgroundClip: `padding-box`,
-    },
-    '.my-masonry-grid_column > div': {
-      width: `calc(100% - 8px)`,
-      marginBottom: `8px`,
-    },
-  },
-  '#SRLLightbox': {
-    backdropFilter: `blur(4px)`,
-    button: {
-      borderRadius: `4px`,
-      margin: `16px`,
-      padding: `2px`,
-    },
-  },
-  '#gradient-canvas': {
-    position: `fixed`,
-    top: 0,
-    left: 0,
-    zIndex: `-11`,
-    width: `100%`,
-    height: `100%`,
-    opacity: `0.1382`,
-    '--gradient-color-1': `#c1ecf9`,
-    '--gradient-color-2': `#bfefe2`,
-    '--gradient-color-3': `#68dcfd`,
-    '--gradient-color-4': `#70e0c8`,
-    '--gradient-color-5': `#fac7be`,
-  },
-  '.mBleed': {
-    gridColumn: `3 / 6`,
-  },
-  '.lBleed': {
-    gridColumn: `2 / 7`,
-  },
-  '.fullBleed': {
-    gridColumn: `1 / 8 !important`,
   },
 });

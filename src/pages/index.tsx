@@ -123,7 +123,7 @@ export default function Home() {
             you can split it into{` `}
             <i>seven</i> different colors.
           </Text>
-          <Squiggle squiggleWidth="16" />
+          <Squiggle squiggleWidth="8" height="16" />
           <Text as="small">
             {accountData
               ? `Colors derived from connected wallet & random seed: `
@@ -139,6 +139,7 @@ export default function Home() {
               flexDirection: `row`,
               flexWrap: `wrap`,
               gap: `16px`,
+              fontFamily: `monospace`,
             }}
           >
             {colors &&

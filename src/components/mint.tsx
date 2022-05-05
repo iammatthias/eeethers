@@ -6,6 +6,7 @@ import { Box } from './primitives/box';
 
 import { PillBox } from './primitives/pillBox';
 import { Button } from './primitives/button';
+import { Text } from './primitives/text';
 
 export default function Mint() {
   const contract = process.env.NEXT_PUBLIC_TARGET_CONTRACT_ADDRESS as string;
@@ -56,17 +57,19 @@ export default function Mint() {
       )}
       {transactionData && (
         <>
-          <PillBox css={{ fontSize: `0.7rem`, overflowWrap: `break-word` }}>
-            tx:
-            {` `}
-            <a
-              href={`${process.env.NEXT_PUBLIC_ETHERSCAN_URL}tx/${transactionData.transactionHash}`}
-            >
-              {transactionData.transactionHash}
-            </a>
+          <PillBox css={{ overflowWrap: `break-word` }}>
+            <Text>
+              tx:
+              {` `}
+              <a
+                href={`${process.env.NEXT_PUBLIC_ETHERSCAN_URL}tx/${transactionData.transactionHash}`}
+              >
+                {transactionData.transactionHash}
+              </a>
+            </Text>
           </PillBox>
           <Box css={{ width: `100%`, display: `flex`, alignContent: `center` }}>
-            <Button css={{ margin: `16px auto` }} onClick={writeReset}>
+            <Button css={{ margin: `16px 0` }} onClick={writeReset}>
               Reset
             </Button>
           </Box>

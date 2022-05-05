@@ -1,7 +1,7 @@
 import { styled } from '@/styles/stitches.config';
 
 export const PillBox = styled(`div`, {
-  background: `var(--rk-colors-connectButtonInnerBackground) var(--rk-colors-connectButtonBackground)`,
+  background: ` var(--rk-colors-connectButtonBackground)`,
   width: `fit-content`,
   padding: `8px`,
   borderRadius: `12px`,
