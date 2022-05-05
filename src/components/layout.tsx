@@ -4,10 +4,13 @@ export default function Layout({ children }: any) {
   return (
     <Box
       css={{
-        margin: 0,
+        margin: `16px auto`,
         padding: `0`,
-        height: `100%`,
-        width: `100%`,
+        height: `100vh`,
+        width: `100vw`,
+        display: `flex`,
+        flexDirection: `column`,
+        justifyContent: `center`,
       }}
     >
       {children}

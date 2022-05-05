@@ -10,17 +10,14 @@ import Info from './info';
 export default function Background() {
   // get user address
   const { data: accountData } = useAccount();
-  const _address = accountData && accountData.address;
 
   // fall back to all white
   // generate random eth address for initial coloration
   // replace with user address after wallet is connected
-  const [address, setAddress] = useState(
+  const [randomAddress, setRandomAddress] = useState(
     // `0x429f42fb5247e3a34d88d978b7491d4b2bee6105`,
     `0xffffffffffffffffffffffffffffffffffffffff`,
   );
-  // set boolean if wallet is connected
-  const [isWalletConnected, setIsWalletConnected] = useState(false);
 
   const [seed, setSeed] = useState(0);
 
@@ -29,17 +26,17 @@ export default function Background() {
     const genRanHex = [...Array(40)]
       .map(() => Math.floor(Math.random() * 16).toString(16))
       .join(``);
-    setAddress(addressPrefix.concat(genRanHex) as any);
-
-    accountData && setAddress(_address as any);
-    accountData && setIsWalletConnected(true);
-
+    setRandomAddress(addressPrefix.concat(genRanHex) as any);
     // generate seed that looks like a tokenId
     setSeed(Math.floor(Math.random() * (9999 - 0 + 1) + 0));
   }, []);
 
+  const address = accountData ? accountData.address : randomAddress;
+
   // parse random eth address into color hex codes
-  const address2colors = address.replace(`0x`, `ff`);
+  const address2colors = address
+    ? address.replace(`0x`, `ff`)
+    : randomAddress.replace(`0x`, `ff`);
   const colors = address2colors.match(/.{1,6}/g);
 
   const SVG = styled(`svg`);
@@ -52,7 +49,10 @@ export default function Background() {
   return (
     colors && (
       <>
-        <Info address={address} isWalletConnected={isWalletConnected} />
+        <Info
+          address={address}
+          isWalletConnected={accountData ? true : false}
+        />
         <Box
           css={{
             zIndex: `-2`,

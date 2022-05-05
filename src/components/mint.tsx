@@ -1,48 +1,60 @@
-import { useContractWrite, useDisconnect, useWaitForTransaction } from 'wagmi';
-
-import { styled } from '@/styles/stitches.config';
-
+import { useContractWrite, useWaitForTransaction, useSigner } from 'wagmi';
 import abi from '@/lib/contract/abi.json';
 
 import { PillBox } from './pillBox';
 import { Button } from './button';
+import { ethers } from 'ethers';
 
 export default function Mint() {
-  const contract = process.env.NEXT_PUBLIC_TARGET_CONTRACT_ADDRESS;
+  const contract = process.env.NEXT_PUBLIC_TARGET_CONTRACT_ADDRESS as string;
+
+  const { data: signer } = useSigner();
 
   const {
     data: writeData,
     isError: writeError,
     isLoading: writeLoading,
+    reset: writeReset,
     write,
-  } = useContractWrite(
+  }: any = useContractWrite(
     {
-      addressOrName: contract as string,
+      addressOrName: contract,
       contractInterface: abi.abi,
+      signerOrProvider: signer,
     },
     `mint`,
   );
 
-  const { disconnect } = useDisconnect();
-
-  const { data: transactionData } = useWaitForTransaction({
+  const {
+    data: transactionData,
+    isError: transactionError,
+    isLoading: transactionLoading,
+  } = useWaitForTransaction({
     hash: writeData && writeData.hash,
   });
+
+  const handleMint = async () => {
+    await write({
+      overrides: {
+        value: ethers.utils.parseEther(`0.05`),
+      },
+    });
+  };
 
   return (
     <>
       {!writeData && (
-        <Button onClick={writeError ? disconnect : (write as any)}>
-          {writeError
+        <Button onClick={writeError ? writeReset : handleMint}>
+          {writeError || transactionError
             ? `Error - Reset`
-            : writeLoading
+            : writeLoading || transactionLoading
             ? `Loading...`
             : `Mint Eeethers`}
         </Button>
       )}
       {transactionData && (
-        <PillBox>
-          <b>tx:</b>
+        <PillBox css={{ fontSize: `0.7rem`, overflowWrap: `break-word` }}>
+          tx:
           {` `}
           <a
             href={`${process.env.NEXT_PUBLIC_ETHERSCAN_URL}tx/${transactionData.transactionHash}`}

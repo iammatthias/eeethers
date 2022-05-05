@@ -1,8 +1,8 @@
-import Background from '@/components/background';
 import Layout from '@/components/layout';
 import VibeProvider from '@/lib/vibeProvider';
 import { AppProps } from 'next/app';
 import { globalStyles } from '@/styles/stitches.config';
+import Background from '@/components/background';
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   globalStyles();
@@ -11,8 +11,8 @@ export default function MyApp({ Component, pageProps }: AppProps) {
       <VibeProvider>
         <Layout>
           <Component {...pageProps} />
+          <Background />
         </Layout>
-        <Background />
       </VibeProvider>
     </>
   );
