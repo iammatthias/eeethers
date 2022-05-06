@@ -18,7 +18,7 @@ export default function EeetherSVG({ address, seed, xy }: any) {
           display: `flex`,
           height: `100%`,
           justifyContent: `center`,
-          alignItems: `center`,
+          alignItems: `start`,
           margin: `16px`,
           '@bp1': {
             justifyContent: `end`,

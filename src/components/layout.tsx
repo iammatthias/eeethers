@@ -6,7 +6,7 @@ export default function Layout({ children }: any) {
       css={{
         position: `relative`,
         height: `100vh`,
-        margin: `0 auto`,
+        margin: `10% auto 0`,
         padding: `0`,
         display: `grid`,
         gridTemplateColumns: `1fr`,

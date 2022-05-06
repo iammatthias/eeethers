@@ -61,11 +61,11 @@ contract Eeethers is ERC721, Ownable {
   }
 
   /* ADMIN */
-  function withdrawAll() external {
+  function withdrawAll() external onlyOwner {
     payable(owner()).transfer(address(this).balance);
   }
 
-  function withdrawAllERC20(IERC20 _erc20Token) external {
+  function withdrawAllERC20(IERC20 _erc20Token) external onlyOwner {
     _erc20Token.transfer(owner(), _erc20Token.balanceOf(address(this)));
   }
 

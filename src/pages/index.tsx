@@ -69,6 +69,7 @@ export default function Home() {
             margin: `16px`,
             '@bp1': {
               alignItems: `start`,
+              justifyContent: `start`,
             },
           }}
         >
@@ -119,17 +120,29 @@ export default function Home() {
                 height: `fit-content`,
               }}
             >
-              Each address is a <code>42</code> character string, and once the
-              leading <code>0x</code> is exchanged for two hexidecimal
-              characters you can split it into{` `}
-              <i>seven</i> different colors.
+              We can create <em>seven</em> unique colors from the{` `}
+              <code>42</code> hexadecimal digits of your Ethereum address. To
+              achieve this, we replace the leading <code>0x</code> with{` `}
+              <code>ff</code> and then split the string into <code>6</code>
+              -character chunks.
+            </Text>
+            <Text>
+              These colors are used in an animated fully on-chain SVG. Each
+              Eeether is unique to its minter.
+            </Text>
+            <Text>
+              9999 Ethers are available to mint. There is no whitelist or token
+              gating, minting is open to all. While you can mint as many tokens
+              as you would like, please be respectful to the community.
             </Text>
             <Squiggle squiggleWidth="8" height="16" />
             <Text as="small">
               {accountData
-                ? `Colors derived from connected wallet & random seed: `
+                ? `Colors derived from connected wallet & ${
+                    tokenId ? `next tokenId` : `random seed`
+                  }: `
                 : `Colors derived from random address${
-                    tokenId ? ` and next tokenId` : ` & seed`
+                    tokenId ? ` & next tokenId` : ` & seed`
                   }: `}
               <br />
               <em>{address}</em>

@@ -202,7 +202,7 @@ contract Renderer {
     string memory _name,
     string memory _imageData,
     string memory _attributes
-  ) public pure returns (string memory) {
+  ) internal pure returns (string memory) {
     return
       string.concat(
         '{"name": "',
