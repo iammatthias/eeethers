@@ -18,8 +18,8 @@ export default function VibeProvider({ children }: any) {
 
   const { provider, chains } = configureChains(
     [
-      // chain.optimism,
-      chain.optimismKovan,
+      chain.optimism,
+      // chain.optimismKovan,
     ],
     [
       apiProvider.alchemy(alchemyId),
