@@ -53,153 +53,155 @@ export default function Home() {
   const colors = address2colors.match(/.{1,6}/g);
 
   return (
-    <>
-      <Box>
-        <EeetherSVG address={address} seed={_seed} xy={_xy} />
-      </Box>
-      <Box
-        css={{
-          display: `flex`,
-          flexDirection: `column`,
-          gap: `1rem`,
-          height: `100%`,
-          justifyContent: `center`,
-          alignItems: `center`,
-          margin: `16px`,
-          '@bp1': {
-            alignItems: `start`,
-          },
-        }}
-      >
+    address && (
+      <>
+        <Box>
+          <EeetherSVG address={address} seed={_seed} xy={_xy} />
+        </Box>
         <Box
           css={{
-            width: _xy,
-            display: `grid`,
-            gridTemplateColumns: `1fr`,
-            gridTemplateRows: `auto`,
-            gridGap: `16px`,
-            padding: `32px`,
+            display: `flex`,
+            flexDirection: `column`,
+            gap: `1rem`,
+            height: `100%`,
+            justifyContent: `center`,
+            alignItems: `center`,
+            margin: `16px`,
             '@bp1': {
-              padding: `0`,
+              alignItems: `start`,
             },
           }}
         >
           <Box
             css={{
-              width: `fit-content`,
-              height: `fit-content`,
+              width: _xy,
+              display: `grid`,
+              gridTemplateColumns: `1fr`,
+              gridTemplateRows: `auto`,
+              gridGap: `16px`,
+              padding: `32px`,
+              '@bp1': {
+                padding: `0`,
+              },
             }}
           >
-            <ConnectButton
-              accountStatus="address"
-              chainStatus="name"
-              showBalance={false}
-            />
-          </Box>
-          {accountData && (
             <Box
               css={{
                 width: `fit-content`,
                 height: `fit-content`,
               }}
             >
-              <Mint />
+              <ConnectButton
+                accountStatus="address"
+                chainStatus="name"
+                showBalance={false}
+              />
             </Box>
-          )}
-          <Text
-            css={{
-              height: `fit-content`,
-            }}
-          >
-            Eeethers is an exploration of color within Ethereum.
-          </Text>
-          <Text
-            css={{
-              height: `fit-content`,
-            }}
-          >
-            Each address is a <code>42</code> character string, and once the
-            leading <code>0x</code> is exchanged for two hexidecimal characters
-            you can split it into{` `}
-            <i>seven</i> different colors.
-          </Text>
-          <Squiggle squiggleWidth="8" height="16" />
-          <Text as="small">
-            {accountData
-              ? `Colors derived from connected wallet & random seed: `
-              : `Colors derived from random address${
-                  tokenId ? ` and next tokenId` : ` & seed`
-                }: `}
-            <br />
-            <em>{address}</em>
-          </Text>
-          <Box
-            css={{
-              display: `flex`,
-              flexDirection: `row`,
-              flexWrap: `wrap`,
-              gap: `16px`,
-              fontFamily: `monospace`,
-            }}
-          >
-            {colors &&
-              colors.map((color: any, index: any) => (
-                <Box
-                  key={index}
-                  css={{
-                    padding: `8px`,
-                    borderRadius: `12px`,
-                    border: `2px solid var(--rk-colors-connectButtonBackground)`,
-                    boxShadow: `var(--rk-shadows-connectButton)`,
-                    flexBasis: `15%`,
-                  }}
-                >
-                  <Text as="small">
-                    <em>Color #{index + 1}</em>
-                  </Text>
-                  <br />
-                  <Text
-                    as="small"
-                    css={{
-                      color: `#${color}`,
-                    }}
-                  >
-                    #{color}
-                  </Text>
-                </Box>
-              ))}
-            <Box
+            {accountData && (
+              <Box
+                css={{
+                  width: `fit-content`,
+                  height: `fit-content`,
+                }}
+              >
+                <Mint />
+              </Box>
+            )}
+            <Text
               css={{
-                padding: `8px`,
-                borderRadius: `12px`,
-                border: `2px solid var(--rk-colors-connectButtonBackground)`,
-                boxShadow: `var(--rk-shadows-connectButton)`,
-                flexBasis: `15%`,
+                height: `fit-content`,
               }}
             >
-              <Text as="small">
-                <em>Seed</em>
-              </Text>
-              <br />
-              <Text as="small">{_seed}</Text>
-            </Box>
-          </Box>
-
-          <Text as="small">
-            <a
-              href={`${process.env.NEXT_PUBLIC_ETHERSCAN_URL}address/${contract}`}
+              Eeethers is an exploration of color within Ethereum.
+            </Text>
+            <Text
+              css={{
+                height: `fit-content`,
+              }}
             >
-              etherscan
-            </a>
-            {` | `}
-            <a href={`${process.env.NEXT_PUBLIC_QUIXOTIC_URL}${contract}`}>
-              quixotic
-            </a>
-            {` | `}
-            <a href="https://github.com/iammatthias/eeethers">github</a>
-          </Text>
+              Each address is a <code>42</code> character string, and once the
+              leading <code>0x</code> is exchanged for two hexidecimal
+              characters you can split it into{` `}
+              <i>seven</i> different colors.
+            </Text>
+            <Squiggle squiggleWidth="8" height="16" />
+            <Text as="small">
+              {accountData
+                ? `Colors derived from connected wallet & random seed: `
+                : `Colors derived from random address${
+                    tokenId ? ` and next tokenId` : ` & seed`
+                  }: `}
+              <br />
+              <em>{address}</em>
+            </Text>
+            <Box
+              css={{
+                display: `flex`,
+                flexDirection: `row`,
+                flexWrap: `wrap`,
+                gap: `16px`,
+                fontFamily: `monospace`,
+              }}
+            >
+              {colors &&
+                colors.map((color: any, index: any) => (
+                  <Box
+                    key={index}
+                    css={{
+                      padding: `8px`,
+                      borderRadius: `12px`,
+                      border: `2px solid var(--rk-colors-connectButtonBackground)`,
+                      boxShadow: `var(--rk-shadows-connectButton)`,
+                      flexBasis: `15%`,
+                    }}
+                  >
+                    <Text as="small">
+                      <em>Color #{index + 1}</em>
+                    </Text>
+                    <br />
+                    <Text
+                      as="small"
+                      css={{
+                        color: `#${color}`,
+                      }}
+                    >
+                      #{color}
+                    </Text>
+                  </Box>
+                ))}
+              <Box
+                css={{
+                  padding: `8px`,
+                  borderRadius: `12px`,
+                  border: `2px solid var(--rk-colors-connectButtonBackground)`,
+                  boxShadow: `var(--rk-shadows-connectButton)`,
+                  flexBasis: `15%`,
+                }}
+              >
+                <Text as="small">
+                  <em>Seed</em>
+                </Text>
+                <br />
+                <Text as="small">{_seed}</Text>
+              </Box>
+            </Box>
+
+            <Text as="small">
+              <a
+                href={`${process.env.NEXT_PUBLIC_ETHERSCAN_URL}address/${contract}`}
+              >
+                etherscan
+              </a>
+              {` | `}
+              <a href={`${process.env.NEXT_PUBLIC_QUIXOTIC_URL}${contract}`}>
+                quixotic
+              </a>
+              {` | `}
+              <a href="https://github.com/iammatthias/eeethers">github</a>
+            </Text>
+          </Box>
         </Box>
-      </Box>
-    </>
+      </>
+    )
   );
 }
