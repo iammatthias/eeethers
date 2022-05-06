@@ -8,9 +8,6 @@ export default function Meta({
   title = `Eeethers`, // page title
   name = `Eeethers`, // site name
   description = `An exploration of color in Ethereum `, // page description
-  image = `https://og.iammatthias.com/${encodeURIComponent(
-    title,
-  )}.png?theme=dark&md=0`,
   children,
 }: any) {
   return (
@@ -40,17 +37,9 @@ export default function Meta({
           />
         </>
       )}
-      {image && (
-        <>
-          <meta key="og_img" property="og:image" content={image} />
-          <meta
-            key="tw_card"
-            name="twitter:card"
-            content="summary_large_image"
-          />
-          <meta key="tw_img" name="twitter:image" content={image} />
-        </>
-      )}
+      <meta key="og_img" property="og:image" content="/meta.png" />
+      <meta key="tw_card" name="twitter:card" content="summary_large_image" />
+      <meta key="tw_img" name="twitter:image" content="/meta.png" />
       <link rel="shortcut icon" href="/image/favicon.ico" />
       <meta name="theme-color" content="#fdfcfc" />
       {children}
