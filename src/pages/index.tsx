@@ -46,7 +46,7 @@ export default function Home() {
   const { width, height } = useWindowDimensions();
 
   const _xy =
-    width && height ? (width > height ? height / 1.618 : width / 1.382) : 0;
+    width && height ? (width > height ? height / 1.618 : width / 1.1) : 0;
 
   // parse random eth address into color hex codes
   const address2colors = address ? address.replace(`0x`, `ff`) : randomAddress;
@@ -66,7 +66,7 @@ export default function Home() {
             height: `100%`,
             justifyContent: `center`,
             alignItems: `center`,
-            margin: `16px`,
+            margin: `0`,
             '@bp1': {
               alignItems: `start`,
               justifyContent: `start`,

@@ -11,7 +11,7 @@ export default function Layout({ children }: any) {
         display: `grid`,
         gridTemplateColumns: `1fr`,
         gridTemplateRows: `auto`,
-        gridGap: `1rem`,
+        gridGap: `2rem`,
         '@bp1': {
           gridTemplateColumns: `1fr 1fr`,
         },
