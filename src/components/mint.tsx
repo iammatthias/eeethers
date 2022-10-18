@@ -1,4 +1,4 @@
-import { ethers } from 'ethers';
+import { BigNumber, ethers } from 'ethers';
 import {
   useContractWrite,
   useWaitForTransaction,
@@ -19,9 +19,10 @@ export default function Mint() {
     address: contract,
     abi: abi.abi,
     functionName: `mint`,
+
     overrides: {
-      gasLimit: 21000,
       value: ethers.utils.parseEther(`0.05`),
+      gasLimit: BigNumber.from(21000),
     },
   });
 
