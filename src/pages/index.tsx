@@ -9,6 +9,7 @@ import { Text } from '@/components/primitives/text';
 import Mint from '@/components/mint';
 import EeetherSVG from '@/components/eeetherSVG';
 import Squiggle from '@/components/squiggle';
+import TokenId from '@/components/tokenId';
 
 export default function Home() {
   const contract = process.env.NEXT_PUBLIC_TARGET_CONTRACT_ADDRESS;
@@ -36,12 +37,20 @@ export default function Home() {
     setSeed(Math.floor(Math.random() * (9999 - 0 + 1) + 0));
   }, []);
 
+  const tokenId = TokenId();
+
+  const _seed = tokenId ? tokenId : seed;
+
   const address = _address ? _address : randomAddress;
 
   const { width, height } = useWindowDimensions();
 
   const _xy =
     width && height ? (width > height ? height / 1.618 : width / 1.1) : 0;
+
+  // parse random eth address into color hex codes
+  const address2colors = address ? address.replace(`0x`, `ff`) : randomAddress;
+  const colors = address2colors.match(/.{1,6}/g);
 
   return (
     address && (
@@ -129,11 +138,67 @@ export default function Home() {
             <Squiggle squiggleWidth="8" height="16" />
             <Text as="small">
               {_address
-                ? `Colors derived from connected wallet & next tokenId`
-                : `Colors derived from random address & seed`}
+                ? `Colors derived from connected wallet & ${
+                    tokenId ? `next tokenId` : `random seed`
+                  }: `
+                : `Colors derived from random address${
+                    tokenId ? ` & next tokenId` : ` & seed`
+                  }: `}
               <br />
               <em>{address}</em>
             </Text>
+
+            <Box
+              css={{
+                display: `flex`,
+                flexDirection: `row`,
+                flexWrap: `wrap`,
+                gap: `16px`,
+                fontFamily: `monospace`,
+              }}
+            >
+              {colors &&
+                colors.map((color: any, index: any) => (
+                  <Box
+                    key={index}
+                    css={{
+                      padding: `8px`,
+                      borderRadius: `12px`,
+                      border: `2px solid var(--rk-colors-connectButtonBackground)`,
+                      boxShadow: `var(--rk-shadows-connectButton)`,
+                      flexBasis: `15%`,
+                    }}
+                  >
+                    <Text as="small">
+                      <em>Color #{index + 1}</em>
+                    </Text>
+                    <br />
+                    <Text
+                      as="small"
+                      css={{
+                        color: `#${color}`,
+                      }}
+                    >
+                      #{color}
+                    </Text>
+                  </Box>
+                ))}
+              <Box
+                css={{
+                  padding: `8px`,
+                  borderRadius: `12px`,
+                  border: `2px solid var(--rk-colors-connectButtonBackground)`,
+                  boxShadow: `var(--rk-shadows-connectButton)`,
+                  flexBasis: `15%`,
+                }}
+              >
+                <Text as="small">
+                  <em>Seed</em>
+                </Text>
+                <br />
+                <Text as="small">{_seed}</Text>
+              </Box>
+            </Box>
 
             <Text as="small">
               <a
