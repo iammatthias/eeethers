@@ -19,7 +19,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         light: `light`,
       }}
     >
-      <Meta title={pageProps.pageTitle} />
+      <Meta />
 
       <VibeProvider>
         <Layout>
