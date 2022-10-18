@@ -1,5 +1,9 @@
 import { ethers } from 'ethers';
-import { useContractWrite, useWaitForTransaction, useSigner } from 'wagmi';
+import {
+  useContractWrite,
+  useWaitForTransaction,
+  usePrepareContractWrite,
+} from 'wagmi';
 import abi from '@/lib/contract/abi.json';
 
 import { Box } from './primitives/box';
@@ -11,51 +15,36 @@ import { Text } from './primitives/text';
 export default function Mint() {
   const contract = process.env.NEXT_PUBLIC_TARGET_CONTRACT_ADDRESS as string;
 
-  const { data: signer } = useSigner();
-
-  const {
-    data: writeData,
-    isError: writeError,
-    isLoading: writeLoading,
-    reset: writeReset,
-    write,
-  }: any = useContractWrite(
-    {
-      addressOrName: contract,
-      contractInterface: abi.abi,
-      signerOrProvider: signer,
+  const { config } = usePrepareContractWrite({
+    address: contract,
+    abi: abi.abi,
+    functionName: `mint`,
+    overrides: {
+      gasLimit: 21000,
+      value: ethers.utils.parseEther(`0.05`),
     },
-    `mint`,
-  );
-
-  const {
-    data: transactionData,
-    isError: transactionError,
-    isLoading: transactionLoading,
-  } = useWaitForTransaction({
-    hash: writeData && writeData.hash,
   });
 
-  const handleMint = async () => {
-    await write({
-      overrides: {
-        value: ethers.utils.parseEther(`0.05`),
-      },
+  const { data, isLoading, isSuccess, isError, reset, write } =
+    useContractWrite(config as any);
+
+  const { data: transactionData, isLoading: transactionLoading } =
+    useWaitForTransaction({
+      hash: data && data.hash,
     });
-  };
 
   return (
     <>
-      {!writeData && (
-        <Button onClick={writeError ? writeReset : handleMint}>
-          {writeError || transactionError
-            ? `Error - Reset`
-            : writeLoading || transactionLoading
+      {!data && isError ? (
+        <Button onClick={reset}>Error - Reset</Button>
+      ) : (
+        <Button onClick={() => write?.()}>
+          {isLoading || transactionLoading
             ? `Loading...`
             : `Mint Eeethers | 0.05 Ξ`}
         </Button>
       )}
-      {transactionData && (
+      {isSuccess && transactionData && (
         <>
           <PillBox css={{ overflowWrap: `break-word` }}>
             <Text>
@@ -69,7 +58,7 @@ export default function Mint() {
             </Text>
           </PillBox>
           <Box css={{ width: `100%`, display: `flex`, alignContent: `center` }}>
-            <Button css={{ margin: `16px 0` }} onClick={writeReset}>
+            <Button css={{ margin: `16px 0` }} onClick={reset}>
               Reset
             </Button>
           </Box>
