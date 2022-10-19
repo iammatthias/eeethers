@@ -79,7 +79,7 @@ export default function Home() {
         >
           <Box
             css={{
-              width: _xy,
+              maxWidth: `60ch`,
               display: `grid`,
               gridTemplateColumns: `1fr`,
               gridTemplateRows: `auto`,
@@ -125,10 +125,7 @@ export default function Home() {
               }}
             >
               We can create <em>seven</em> unique colors from the{` `}
-              <code>42</code> hexadecimal digits of your Ethereum address. To
-              achieve this, we replace the leading <code>0x</code> with{` `}
-              <code>ff</code> and then split the string into <code>6</code>
-              -character chunks.
+              <code>42</code> hexadecimal digits of your Ethereum address.
             </Text>
             <Text>
               These colors are used in an animated fully on-chain SVG. Each
@@ -136,8 +133,7 @@ export default function Home() {
             </Text>
             <Text>
               {remaining} Ethers are available to mint. There is no whitelist or
-              token gating, minting is open to all. While you can mint as many
-              tokens as you would like, please be respectful to the community.
+              token gating, minting is open to all.
             </Text>
             <Squiggle squiggleWidth="8" height="16" />
             <Text as="small">
