@@ -52,6 +52,10 @@ export default function Home() {
   const address2colors = address ? address.replace(`0x`, `ff`) : randomAddress;
   const colors = address2colors.match(/.{1,6}/g);
 
+  console.log(tokenId);
+
+  const remaining = tokenId ? 9999 - +tokenId : 9999;
+
   return (
     address && (
       <>
@@ -131,9 +135,9 @@ export default function Home() {
               Eeether is unique to its minter.
             </Text>
             <Text>
-              9999 Ethers are available to mint. There is no whitelist or token
-              gating, minting is open to all. While you can mint as many tokens
-              as you would like, please be respectful to the community.
+              {remaining} Ethers are available to mint. There is no whitelist or
+              token gating, minting is open to all. While you can mint as many
+              tokens as you would like, please be respectful to the community.
             </Text>
             <Squiggle squiggleWidth="8" height="16" />
             <Text as="small">
