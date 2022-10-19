@@ -26,7 +26,6 @@ export default function TokenId() {
   }
 
   if (isError) {
-    console.log(error);
     return null;
   }
 
