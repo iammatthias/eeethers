@@ -11,7 +11,7 @@ export default function TokenId() {
     isBigNumber: boolean;
   };
 
-  const { data } = useContractRead({
+  const { data, error, isError, isLoading } = useContractRead({
     address: contract,
     abi: abi.abi,
     functionName: `tokenId`,
@@ -20,6 +20,15 @@ export default function TokenId() {
   const _data = data as Data;
 
   const tokenId = data ? BigNumber.from(_data?._hex).toString() : null;
+
+  if (isLoading) {
+    return null;
+  }
+
+  if (isError) {
+    console.log(error);
+    return null;
+  }
 
   return tokenId;
 }
