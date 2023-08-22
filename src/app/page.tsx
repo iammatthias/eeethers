@@ -1,7 +1,6 @@
 import styles from "./page.module.css";
 import Eeethers_SVG from "./components/eeethers_svg";
 import Mint from "./components/mint";
-import { Remaining_Tokens } from "./components/token_id";
 import Link from "next/link";
 
 export default function Home() {
@@ -20,9 +19,7 @@ export default function Home() {
           Each is unique to its minter — we create seven unique colors from the <code>42</code> hexadecimal digits of
           your Ethereum address, and use them in an animated fully onchain SVG.
         </p>
-        <p>
-          <Remaining_Tokens /> / 9999 Ethers are remaining.
-        </p>
+
         <p>
           <Link href={`${process.env.NEXT_PUBLIC_ETHERSCAN_URL}/address/${process.env.NEXT_PUBLIC_CONTRACT_ADDRESS}`}>
             Etherscan
