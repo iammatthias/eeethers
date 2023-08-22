@@ -15,7 +15,7 @@ export default function Home() {
       </div>
       <div>
         <h1>Eeethers</h1>
-        <p>This is an exploration of onchain identity.</p>
+        <p>This is an exploration of onchain identity on the Optimism L2.</p>
         <p>
           Each is unique to its minter — we create seven unique colors from the <code>42</code> hexadecimal digits of
           your Ethereum address, and use them in an animated fully onchain SVG.
