@@ -25,7 +25,7 @@ export function Token_ID(): bigint {
     functionName: "tokenId",
   });
 
-  return BigInt(data as number);
+  return BigInt(data ? (data as number) : 0);
 }
 
 export function Remaining_Tokens() {
