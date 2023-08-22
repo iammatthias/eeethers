@@ -1,0 +1,61 @@
+.main {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto;
+  gap: 1rem;
+  padding: 1rem;
+  min-height: 100vh;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.main * {
+  width: 100%;
+}
+
+.main > div > div:has(> button) {
+  width: fit-content;
+}
+
+.main > *:nth-child(1) > div {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.main > *:nth-child(1) > div > span {
+  width: fit-content;
+}
+
+.main > *:nth-child(2) {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 1rem;
+}
+
+.main > *:nth-child(2) > button {
+  width: fit-content;
+  color: var(--rk-colors-accentColorForeground);
+  box-shadow: var(--rk-shadows-connectButton);
+  background: var(--rk-colors-accentColor);
+  font-family: var(--rk-fonts-body);
+  border-radius: var(--rk-radii-connectButton);
+  padding: 0 14px;
+  height: 40px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+}
+
+@media (max-width: 900px) {
+  .main {
+    grid-template-columns: 1fr;
+  }
+}
